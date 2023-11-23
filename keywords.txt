@@ -1,0 +1,40 @@
+#######################################
+# Syntax Coloring Map For GuL_NovaFitness
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+SDS011			    KEYWORD1
+SDS018			    KEYWORD1
+SDS021			    KEYWORD1
+SDS198  			KEYWORD1
+NovaFitness			    KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+read					        KEYWORD2
+poll					        KEYWORD2
+getSensorName                   KEYWORD2
+sleep                           KEYWORD2
+wakeup                          KEYWORD2
+setToActiveReporting            KEYWORD2
+setToPassiveReporting           KEYWORD2
+getPM2_5                        KEYWORD2
+getPM10                         KEYWORD2
+getPM100                        KEYWORD2
+getVersion                      KEYWORD2
+getReportingMode                KEYWORD2
+getWorkingMode                  KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
