@@ -99,6 +99,7 @@ namespace GuL
                 {
                     _parseStep = WAIT_FOR_NEW_FRAME;
                 }
+                _parseStep = RECEIVE_PAYLOAD;
                 _payload.emplace_back(byte);
                 break;
             case RECEIVE_PAYLOAD:
@@ -113,7 +114,7 @@ namespace GuL
                 _payload.emplace_back(byte);
                 _parseStep = WAIT_FOR_NEW_FRAME;
                 // TODO: Check for the ID also
-                if (byte != 0xAB || this->calcChecksum(_payload) != _payload.at(17))
+                if (byte != 0xAB || this->calcChecksum(_payload) != _payload.at(_payload.size() - 2))
                 {
                     break;
                 }
@@ -147,6 +148,7 @@ namespace GuL
             this->handleDataPayload();
             break;
         case DATA100_COMMAND_ID:
+            this->handleData100Payload();
             break;
         }
     }
@@ -202,6 +204,8 @@ namespace GuL
             _firmwareVersion.month = _payload.at(4);
             _firmwareVersion.day = _payload.at(5);
             break;
+        default:
+            break;
         }
     }
 
@@ -216,7 +220,7 @@ namespace GuL
         // "Checksum: Low 8bit of the sum result of Data Bytes（not including packet head, tail and Command ID"
         uint8_t sum = 0;
 
-        for (int8_t i = 2; i < cmd.size() - 1; i++)
+        for (int8_t i = 2; i < cmd.size() - 2; i++)
         {
             sum += cmd[i];
         }

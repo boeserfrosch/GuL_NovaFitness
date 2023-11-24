@@ -6,8 +6,8 @@ GuL::SDS011 sds(Serial2);
 #define RX2 1
 #define TX2 38
 
-std::string outputFormat = "PM1 (STD) \t= % 6d µg/µ3 \n"
-                           "PM10 (STD) \t= % 6d µg/µ3 \n"
+std::string outputFormat = "PM2.5 (STD) \t= % 6.2f µg/µ3 \n"
+                           "PM10 (STD) \t= % 6.2f µg/µ3 \n"
                            "\n";
 
 void setup()
@@ -21,12 +21,12 @@ void setup()
 
 void loop()
 {
-  pms.poll();
+  sds.poll();
   delay(20);
-  pms.read();
+  sds.read();
 
   Serial.printf(outputFormat.c_str(),
-                sds.getPM1(),
+                sds.getPM2_5(),
                 sds.getPM10());
   delay(1000);
 }
